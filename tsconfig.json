@@ -6,6 +6,9 @@
       "@libs/*": [
         "libs/*"
       ],
+      "@modules/*": [
+        "modules/*"
+      ],
       "@components/*": [
         "components/*"
       ],
