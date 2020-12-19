@@ -11,7 +11,6 @@ if (typeof window !== 'undefined' && !firebase.apps.length) {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
     measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
   });
-  console.log(process.env);
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 }
 
