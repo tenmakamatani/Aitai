@@ -1,6 +1,15 @@
 {
   "strict": true,
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@libs/*": [
+        "libs/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+    },
     "allowJs": true,
     "alwaysStrict": true,
     "esModuleInterop": true,
