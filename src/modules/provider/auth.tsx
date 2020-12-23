@@ -6,7 +6,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<firebase.User | null>(null);
 
   useEffect(() => {
-    return firebase.auth().onIdTokenChanged(async (user) => {
+    return firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
         setUser(null);
         // nookies.set(undefined, 'token', '');
