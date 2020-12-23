@@ -1,12 +1,15 @@
-import type { AppProps } from 'next/app';
+import App from "next/app";
+import { DIContainer } from '@libs/application/DI';
 import { AuthProvider } from '@modules/provider/auth';
 
-const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <AuthProvider>
-      <Component {...pageProps} />
-    </AuthProvider>
-  );
+export default class Aitai extends App {
+  render() {
+    DIContainer.setup();
+    const { Component, pageProps } = this.props;
+    return (
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    );
+  }
 }
-
-export default App;

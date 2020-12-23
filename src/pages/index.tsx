@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Layout } from '../components/organisms/Layout'
-import { AuthService } from '@libs/application/AuthService';
+import { DIContainer } from '@libs/application/DI';
 
 const IndexPage = () => (
   <Layout>
@@ -8,14 +8,14 @@ const IndexPage = () => (
     <p>
       <button
         onClick={async () => {
-          await AuthService.loginWithTwitter();
+          await DIContainer.authService.loginWithTwitter();
         }}
       >
         ログイン
       </button>
       <button
         onClick={async () => {
-          await AuthService.logout();
+          await DIContainer.authService.logout();
         }}
       >
         ログアウト
