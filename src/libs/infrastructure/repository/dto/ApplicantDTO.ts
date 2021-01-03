@@ -1,51 +1,41 @@
 import { firebase } from '../../firebase';
 
-interface IRecruiterDTO {
+interface IApplicantDTO {
   id?: string;
   name: string;
-  profile: string;
-  message: string;
   imageUrl: string;
   twitterUrl: string;
 }
 
-export class RecruiterDTO implements IRecruiterDTO {
+export class ApplicantDTO implements IApplicantDTO {
   readonly id?: string;
   readonly name: string;
-  readonly profile: string;
-  readonly message: string;
   readonly imageUrl: string;
   readonly twitterUrl: string;
 
-  constructor(init: IRecruiterDTO) {
+  constructor(init: IApplicantDTO) {
     this.id = init.id;
     this.name = init.name;
-    this.profile = init.profile;
-    this.message = init.message;
     this.imageUrl = init.imageUrl;
     this.twitterUrl = init.twitterUrl;
   }
 
   static fromDoc(doc: firebase.firestore.DocumentSnapshot) {
     const id = doc.id;
-    const data = doc.data() as IRecruiterDTO;
-    return new RecruiterDTO({
+    const data = doc.data() as IApplicantDTO;
+    return new ApplicantDTO({
       id: id,
       name: data.name,
-      profile: data.profile,
-      message: data.message,
       imageUrl: data.imageUrl,
-      twitterUrl: data.twitterUrl
+      twitterUrl: data.twitterUrl,
     });
   }
 
-  toJson(): IRecruiterDTO {
+  toJson(): IApplicantDTO {
     return {
       name: this.name,
-      profile: this.profile,
-      message: this.message,
       imageUrl: this.imageUrl,
-      twitterUrl: this.twitterUrl
-    };
+      twitterUrl: this.twitterUrl,
+    }
   }
 }
