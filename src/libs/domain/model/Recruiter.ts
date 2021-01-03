@@ -1,4 +1,5 @@
 interface IRecruiter {
+  id?: RecruiterId;
   name: string;
   profile: string;
   message: string;
@@ -8,7 +9,7 @@ interface IRecruiter {
 
 export class Recruiter implements IRecruiter {
 
-  
+  public readonly id?: RecruiterId;
   public readonly name: string;
   public readonly profile: string;
   public readonly message: string;
@@ -16,6 +17,7 @@ export class Recruiter implements IRecruiter {
   public readonly twitterUrl: string;
 
   constructor(init: IRecruiter) {
+    this.id = init.id;
     this.name = init.name;
     this.profile = init.profile;
     this.message = init.message;
