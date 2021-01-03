@@ -4,9 +4,10 @@ import { firebase } from '../firebase';
 
 @injectable()
 export class FirebaseAuthService extends AuthService {
-  async loginWithTwitter(): Promise<void> {
+  async loginWithTwitter(): Promise<firebase.auth.UserCredential> {
     const provider = new firebase.auth.TwitterAuthProvider();
-    await firebase.auth().signInWithRedirect(provider);
+    const result = await firebase.auth().signInWithPopup(provider);
+    return result;
   }
   async logout(): Promise<void> {
     await firebase.auth().signOut();

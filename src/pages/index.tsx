@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Layout } from '../components/organisms/Layout'
 import { DIContainer } from '@libs/application/DI';
+import { CreateUserUseCase } from '@libs/application/usecase/CreateUserUseCase';
 
 const IndexPage = () => (
   <Layout>
@@ -8,7 +9,7 @@ const IndexPage = () => (
     <p>
       <button
         onClick={async () => {
-          await DIContainer.authService.loginWithTwitter();
+          await CreateUserUseCase.execute();
         }}
       >
         ログイン
