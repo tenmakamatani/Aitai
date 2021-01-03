@@ -1,3 +1,4 @@
+import { injectable } from 'inversify';
 import { Recruiter, RecruiterId } from '@libs/domain/model';
 import { RecruiterRepository } from '@libs/domain/repository';
 import { firebase } from '../firebase';
@@ -5,6 +6,7 @@ import { FirestoreCollectionIds, firestoreVersion } from '../firestoreConfig';
 import { RecruiterAssembler } from './assembler/RecruiterAssembler';
 import { RecruiterDTO } from './dto/RecruiterDTO';
 
+@injectable()
 export class FirestoreRecruiterRepository extends RecruiterRepository {
 
   private _firestore = firebase.firestore();

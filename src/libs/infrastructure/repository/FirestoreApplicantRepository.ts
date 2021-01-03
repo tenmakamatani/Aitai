@@ -1,3 +1,4 @@
+import { injectable } from 'inversify';
 import { Applicant, RecruiterId } from '@libs/domain/model';
 import { ApplicantRepository } from '@libs/domain/repository';
 import { firebase } from '../firebase';
@@ -5,6 +6,7 @@ import { FirestoreCollectionIds, firestoreVersion } from '../firestoreConfig';
 import { ApplicantAssembler } from './assembler/ApplicantAssembler';
 import { ApplicantDTO } from './dto/ApplicantDTO';
 
+@injectable()
 export class FirestoreApplicantRepository extends ApplicantRepository {
 
   private _firestore = firebase.firestore();
