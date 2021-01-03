@@ -8,7 +8,6 @@ interface IRecruiter {
 }
 
 export class Recruiter implements IRecruiter {
-
   public readonly id?: RecruiterId;
   public readonly name: string;
   public readonly profile: string;
