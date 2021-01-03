@@ -1,3 +1,5 @@
+import { Id } from './Id';
+
 interface IApplicant {
   id?: ApplicantId;
   name: string;
@@ -19,14 +21,4 @@ export class Applicant implements IApplicant {
   }
 }
 
-export class ApplicantId {
-  readonly value: string;
-
-  constructor(_value: string) {
-    this.value = _value;
-  }
-
-  isEqualTo(other: ApplicantId) {
-    return this.value === other.value;
-  }
-}
+export class ApplicantId extends Id {}

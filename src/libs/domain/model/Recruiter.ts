@@ -1,3 +1,5 @@
+import { Id } from './Id';
+
 interface IRecruiter {
   id?: RecruiterId;
   name: string;
@@ -25,14 +27,4 @@ export class Recruiter implements IRecruiter {
   }
 }
 
-export class RecruiterId {
-  readonly value: string;
-
-  constructor(_value: string) {
-    this.value = _value;
-  }
-
-  isEqualTo(other: RecruiterId) {
-    return this.value === other.value;
-  }
-}
+export class RecruiterId extends Id {}
