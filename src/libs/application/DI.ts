@@ -1,12 +1,17 @@
 import 'reflect-metadata';
 import { Container } from "inversify";
-import { ApplicantRepository, RecruiterRepository } from '@libs/domain/repository';
+import {
+  ApplicantRepository,
+  RecruiterRepository,
+  TwitterUserRepository
+} from '@libs/domain/repository';
 import {
   FirestoreApplicantRepository,
   FirestoreRecruiterRepository,
+  AxiosTwitterUserRepository,
 } from '@libs/infrastructure/repository';
-import { AuthService } from '@libs/domain/service/AuthService';
-import { FirebaseAuthService } from '@libs/infrastructure/service/FirebaseAuthService';
+import { AuthService } from '@libs/domain/service';
+import { FirebaseAuthService } from '@libs/infrastructure/service';
 
 const container = new Container();
 
@@ -21,6 +26,10 @@ export class DIContainer {
       .to(FirestoreRecruiterRepository)
       .inSingletonScope();
     container
+      .bind<TwitterUserRepository>(TYPES.TwitterUserRepository)
+      .to(AxiosTwitterUserRepository)
+      .inSingletonScope();
+    container
       .bind<AuthService>(TYPES.AuthService)
       .to(FirebaseAuthService)
       .inSingletonScope();
@@ -32,6 +41,9 @@ export class DIContainer {
   static get recruiterRepo() {
     return container.get<RecruiterRepository>(TYPES.RecruiterRepository);
   }
+  static get twitterUserRepo() {
+    return container.get<TwitterUserRepository>(TYPES.TwitterUserRepository);
+  }
   static get authService() {
     return container.get<AuthService>(TYPES.AuthService);
   }
@@ -40,5 +52,6 @@ export class DIContainer {
 const TYPES = {
   ApplicantRepository: Symbol.for('ApplicantRepository'),
   RecruiterRepository: Symbol.for('RecruiterRepository'),
+  TwitterUserRepository: Symbol.for('TwitterUserRepository'),
   AuthService: Symbol.for('AuthService'),
 } as const;
