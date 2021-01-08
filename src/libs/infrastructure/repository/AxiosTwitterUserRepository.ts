@@ -10,7 +10,7 @@ export class AxiosTwitterUserRepository extends TwitterUserRepository {
   
   async retrieve(req: IRetrieveTwitterUserRequest): Promise<TwitterUser> {
     const result = await axios.get<IRetrieveTwitterUserRequest, AxiosResponse<IRetrieveTwitterUserResponse>>('/api/twitter/account_info', {
-      data: req
+      params: req
     });
     const dto = TwitterUserDTO.fromRes(result);
     return TwitterUserAssembler.decode(dto);
