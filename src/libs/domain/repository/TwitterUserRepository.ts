@@ -10,6 +10,7 @@ export interface IRetrieveTwitterUserResponse {
   name: string;
   imageUrl: string;
   profileUrl: string;
+  description: string;
 }
 
 @injectable()

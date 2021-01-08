@@ -7,6 +7,7 @@ export class TwitterUserAssembler {
       name: dto.name,
       imageUrl: dto.imageUrl,
       profileUrl: dto.profileUrl,
+      description: dto.description,
     });
   }
 }

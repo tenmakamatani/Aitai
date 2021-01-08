@@ -6,19 +6,17 @@ export class RecruiterAssembler {
     return new Recruiter({
       id: new RecruiterId(dto.id!),
       name: dto.name,
-      profile: dto.profile,
-      message: dto.message,
+      description: dto.description,
       imageUrl: dto.imageUrl,
       twitterUrl: dto.twitterUrl,
     });
   }
-  
+
   static encode(recruiter: Recruiter): RecruiterDTO {
     return new RecruiterDTO({
       id: recruiter.id?.value,
       name: recruiter.name,
-      profile: recruiter.profile,
-      message: recruiter.message,
+      description: recruiter.description,
       imageUrl: recruiter.imageUrl,
       twitterUrl: recruiter.twitterUrl
     });

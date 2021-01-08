@@ -3,8 +3,7 @@ import { firebase } from '../../firebase';
 interface IRecruiterDTO {
   id?: string;
   name: string;
-  profile: string;
-  message: string;
+  description: string;
   imageUrl: string;
   twitterUrl: string;
 }
@@ -12,16 +11,14 @@ interface IRecruiterDTO {
 export class RecruiterDTO implements IRecruiterDTO {
   readonly id?: string;
   readonly name: string;
-  readonly profile: string;
-  readonly message: string;
+  readonly description: string;
   readonly imageUrl: string;
   readonly twitterUrl: string;
 
   constructor(init: IRecruiterDTO) {
     this.id = init.id;
     this.name = init.name;
-    this.profile = init.profile;
-    this.message = init.message;
+    this.description = init.description;
     this.imageUrl = init.imageUrl;
     this.twitterUrl = init.twitterUrl;
   }
@@ -32,8 +29,7 @@ export class RecruiterDTO implements IRecruiterDTO {
     return new RecruiterDTO({
       id: id,
       name: data.name,
-      profile: data.profile,
-      message: data.message,
+      description: data.description,
       imageUrl: data.imageUrl,
       twitterUrl: data.twitterUrl
     });
@@ -42,8 +38,7 @@ export class RecruiterDTO implements IRecruiterDTO {
   toJson(): IRecruiterDTO {
     return {
       name: this.name,
-      profile: this.profile,
-      message: this.message,
+      description: this.description,
       imageUrl: this.imageUrl,
       twitterUrl: this.twitterUrl
     };

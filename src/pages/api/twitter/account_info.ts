@@ -20,5 +20,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     name: credential['name'],
     imageUrl: credential['profile_image_url'],
     profileUrl: `https://twitter.com/${credential['screen_name']}`,
+    description: credential['description']
   }));
 }

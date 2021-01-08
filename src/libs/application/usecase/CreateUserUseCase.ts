@@ -1,3 +1,4 @@
+import { Recruiter } from '@libs/domain/model';
 import { firebase } from '@libs/infrastructure/firebase';
 import { DIContainer } from '../DI';
 
@@ -18,10 +19,14 @@ export class CreateUserUseCase {
     if (!result.credential) return;
     const credential = result.credential as TwitterAuthCredential;
     
+    // Twitterアカウント情報を取得
     const twitterAccountInfo = await twitterUserRepo.retrieve({
       accessToken: credential.accessToken,
       secret: credential.secret
     });
-    console.log(twitterAccountInfo);
+    
+    // Recruiterを作成
+    const recruiter = Recruiter.fromTwitterUser(twitterAccountInfo);
+    await recruiterRepo.create(recruiter);
   }
 }

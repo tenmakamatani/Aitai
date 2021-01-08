@@ -1,10 +1,10 @@
 import { Id } from './Id';
+import { TwitterUser } from './TwitterUser';
 
 interface IRecruiter {
   id?: RecruiterId;
   name: string;
-  profile: string;
-  message: string;
+  description: string;
   imageUrl: string;
   twitterUrl: string;
 }
@@ -12,18 +12,25 @@ interface IRecruiter {
 export class Recruiter implements IRecruiter {
   public readonly id?: RecruiterId;
   public readonly name: string;
-  public readonly profile: string;
-  public readonly message: string;
+  public readonly description: string;
   public readonly imageUrl: string;
   public readonly twitterUrl: string;
 
   constructor(init: IRecruiter) {
     this.id = init.id;
     this.name = init.name;
-    this.profile = init.profile;
-    this.message = init.message;
+    this.description = init.description;
     this.imageUrl = init.imageUrl;
     this.twitterUrl = init.twitterUrl;
+  }
+
+  static fromTwitterUser(twitterUser: TwitterUser) {
+    return new Recruiter({
+      name: twitterUser.name,
+      description: twitterUser.description,
+      imageUrl: twitterUser.imageUrl,
+      twitterUrl: twitterUser.profileUrl,
+    })
   }
 }
 
