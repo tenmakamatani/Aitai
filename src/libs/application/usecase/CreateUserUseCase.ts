@@ -27,6 +27,6 @@ export class CreateUserUseCase {
     
     // Recruiterを作成
     const recruiter = Recruiter.fromTwitterUser(twitterAccountInfo);
-    await recruiterRepo.create(recruiter);
+    await recruiterRepo.createMyRecruiter(recruiter);
   }
 }

@@ -11,13 +11,16 @@ export class FirestoreRecruiterRepository extends RecruiterRepository {
 
   private _firestore = firebase.firestore();
 
-  async create(recruiter: Recruiter): Promise<void> {
+  async createMyRecruiter(recruiter: Recruiter): Promise<void> {
+    const credential = firebase.auth().currentUser;
+    if (!credential) return;
     const dto = RecruiterAssembler.encode(recruiter);
     await this._firestore
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
-      .add(dto.toJson());
+      .doc(credential.uid)
+      .set(dto.toJson());
   }
 
   async retrieve(recruiterId: RecruiterId): Promise<Recruiter> {
