@@ -1,7 +1,7 @@
 import { Id } from './Id';
 import { TwitterUser } from './TwitterUser';
 
-interface IRecruiter {
+export interface IRecruiter {
   id?: RecruiterId;
   name: string;
   description: string;

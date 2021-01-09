@@ -1,6 +1,6 @@
 import { Id } from './Id';
 
-interface IApplicant {
+export interface IApplicant {
   id?: ApplicantId;
   name: string;
   imageUrl: string;
