@@ -5,7 +5,7 @@ interface IRecruiterDTO {
   name: string;
   description: string;
   imageUrl: string;
-  twitterUrl: string;
+  twitterId: string;
 }
 
 export class RecruiterDTO implements IRecruiterDTO {
@@ -13,14 +13,14 @@ export class RecruiterDTO implements IRecruiterDTO {
   readonly name: string;
   readonly description: string;
   readonly imageUrl: string;
-  readonly twitterUrl: string;
+  readonly twitterId: string;
 
   constructor(init: IRecruiterDTO) {
     this.id = init.id;
     this.name = init.name;
     this.description = init.description;
     this.imageUrl = init.imageUrl;
-    this.twitterUrl = init.twitterUrl;
+    this.twitterId = init.twitterId;
   }
 
   static fromDoc(doc: firebase.firestore.DocumentSnapshot) {
@@ -31,7 +31,7 @@ export class RecruiterDTO implements IRecruiterDTO {
       name: data.name,
       description: data.description,
       imageUrl: data.imageUrl,
-      twitterUrl: data.twitterUrl
+      twitterId: data.twitterId
     });
   }
 
@@ -40,7 +40,7 @@ export class RecruiterDTO implements IRecruiterDTO {
       name: this.name,
       description: this.description,
       imageUrl: this.imageUrl,
-      twitterUrl: this.twitterUrl
+      twitterId: this.twitterId
     };
   }
 }

@@ -8,7 +8,7 @@ export class RecruiterAssembler {
       name: dto.name,
       description: dto.description,
       imageUrl: dto.imageUrl,
-      twitterUrl: dto.twitterUrl,
+      twitterId: dto.twitterId,
     });
   }
 
@@ -18,7 +18,7 @@ export class RecruiterAssembler {
       name: recruiter.name,
       description: recruiter.description,
       imageUrl: recruiter.imageUrl,
-      twitterUrl: recruiter.twitterUrl
+      twitterId: recruiter.twitterId
     });
   }
 }

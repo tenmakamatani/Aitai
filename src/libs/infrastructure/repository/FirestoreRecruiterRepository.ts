@@ -33,4 +33,17 @@ export class FirestoreRecruiterRepository extends RecruiterRepository {
     const dto = RecruiterDTO.fromDoc(doc);
     return RecruiterAssembler.decode(dto);
   }
+
+  async retrieveFromTwitterId(twitterId: string): Promise<Recruiter | null> {
+    const snap = await this._firestore
+      .collection(FirestoreCollectionIds.v)
+      .doc(firestoreVersion)
+      .collection(FirestoreCollectionIds.recruiters)
+      .where('twitterId', '==', twitterId)
+      .limit(1)
+      .get();
+    if (snap.docs.length === 0) return null;
+    const dto = RecruiterDTO.fromDoc(snap.docs[0]);
+    return RecruiterAssembler.decode(dto);
+  }
 }

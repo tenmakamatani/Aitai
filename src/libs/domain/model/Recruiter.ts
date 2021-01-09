@@ -6,7 +6,7 @@ interface IRecruiter {
   name: string;
   description: string;
   imageUrl: string;
-  twitterUrl: string;
+  twitterId: string;
 }
 
 export class Recruiter implements IRecruiter {
@@ -14,14 +14,14 @@ export class Recruiter implements IRecruiter {
   public readonly name: string;
   public readonly description: string;
   public readonly imageUrl: string;
-  public readonly twitterUrl: string;
+  public readonly twitterId: string;
 
   constructor(init: IRecruiter) {
     this.id = init.id;
     this.name = init.name;
     this.description = init.description;
     this.imageUrl = init.imageUrl;
-    this.twitterUrl = init.twitterUrl;
+    this.twitterId = init.twitterId;
   }
 
   static fromTwitterUser(twitterUser: TwitterUser) {
@@ -29,7 +29,7 @@ export class Recruiter implements IRecruiter {
       name: twitterUser.name,
       description: twitterUser.description,
       imageUrl: twitterUser.imageUrl,
-      twitterUrl: twitterUser.profileUrl,
+      twitterId: twitterUser.id,
     })
   }
 }

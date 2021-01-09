@@ -17,9 +17,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader("content-type", "application/json");
   res.status(200);
   res.end(JSON.stringify({ 
+    id: credential['screen_name'],
     name: credential['name'],
     imageUrl: credential['profile_image_url'],
-    profileUrl: `https://twitter.com/${credential['screen_name']}`,
     description: credential['description']
   }));
 }

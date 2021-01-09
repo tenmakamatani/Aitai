@@ -7,9 +7,9 @@ export interface IRetrieveTwitterUserRequest {
 }
 
 export interface IRetrieveTwitterUserResponse {
+  id: string;
   name: string;
   imageUrl: string;
-  profileUrl: string;
   description: string;
 }
 

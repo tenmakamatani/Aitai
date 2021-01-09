@@ -4,9 +4,9 @@ import { TwitterUserDTO } from "../dto/TwitterUserDTO";
 export class TwitterUserAssembler {
   static decode(dto: TwitterUserDTO): TwitterUser {
     return new TwitterUser({
+      id: dto.id,
       name: dto.name,
       imageUrl: dto.imageUrl,
-      profileUrl: dto.profileUrl,
       description: dto.description,
     });
   }

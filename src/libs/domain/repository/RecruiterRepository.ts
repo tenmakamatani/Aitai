@@ -5,4 +5,5 @@ import { Recruiter, RecruiterId } from '../model';
 export abstract class RecruiterRepository {
   abstract async createMyRecruiter(recruiter: Recruiter): Promise<void>;
   abstract async retrieve(recruiterId: RecruiterId): Promise<Recruiter>;
+  abstract async retrieveFromTwitterId(twitterId: string): Promise<Recruiter | null>;
 }
