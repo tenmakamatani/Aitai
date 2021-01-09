@@ -1,4 +1,4 @@
-export interface ITwitterUser {
+interface ITwitterUser {
   id: string;
   name: string;
   imageUrl: string;

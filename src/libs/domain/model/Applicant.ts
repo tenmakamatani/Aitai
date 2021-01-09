@@ -19,6 +19,15 @@ export class Applicant implements IApplicant {
     this.imageUrl = init.imageUrl;
     this.twitterUrl = init.twitterUrl
   }
+
+  toInterface(): IApplicant {
+    return {
+      id: this.id,
+      name: this.name,
+      imageUrl: this.imageUrl,
+      twitterUrl: this.twitterUrl,
+    }
+  }
 }
 
 export class ApplicantId extends Id {}
