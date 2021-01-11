@@ -24,16 +24,6 @@ export class Recruiter {
     this.twitterId = init.twitterId;
   }
 
-  toInterface(): IRecruiter {
-    return {
-      id: this.id?.value,
-      name: this.name,
-      description: this.description,
-      imageUrl: this.imageUrl,
-      twitterId: this.twitterId,
-    }
-  }
-
   static fromTwitterUser(twitterUser: TwitterUser) {
     return new Recruiter({
       name: twitterUser.name,
