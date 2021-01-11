@@ -1,10 +1,5 @@
-import { useState, useEffect } from 'react';
 import { InferGetServerSidePropsType, GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
-import { IRecruiter, Recruiter } from '@libs/domain/model';
-import { DIContainer } from '@libs/application/DI';
-import { useRecruiter } from '@modules/hooks/recruiter';
-import { useAuth } from '@modules/hooks/auth';
+import { useAuth, useRecruiter } from '@modules/hooks';
 
 interface IProps {
   id: string;
