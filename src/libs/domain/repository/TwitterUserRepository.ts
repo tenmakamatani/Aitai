@@ -15,5 +15,5 @@ export interface IRetrieveTwitterUserResponse {
 
 @injectable()
 export abstract class TwitterUserRepository {
-  abstract async retrieve(params: IRetrieveTwitterUserRequest): Promise<TwitterUser>;
+  abstract retrieve(params: IRetrieveTwitterUserRequest): Promise<TwitterUser>;
 }
