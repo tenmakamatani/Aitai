@@ -5,7 +5,7 @@ interface IProps {
   id: string;
 }
 
-export const getServerSideProps: GetServerSideProps<Partial<IProps>> = async ({ query, res }: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps<Partial<IProps>> = async ({ query }: GetServerSidePropsContext) => {
   const id = typeof query.id === 'string' ? query.id : query.id[0];
   return {
     props: {
