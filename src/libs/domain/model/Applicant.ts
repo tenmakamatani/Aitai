@@ -1,20 +1,20 @@
 import { Id } from './Id';
 
 export interface IApplicant {
-  id?: ApplicantId;
+  id?: string;
   name: string;
   imageUrl: string;
   twitterUrl: string;
 }
 
-export class Applicant implements IApplicant {
-  public readonly id?: ApplicantId;
+export class Applicant {
+  public readonly id: ApplicantId;
   public readonly name: string;
   public readonly imageUrl: string;
   public readonly twitterUrl: string;
 
   constructor(init: IApplicant) {
-    this.id = init.id;
+    this.id = new ApplicantId(init.id);
     this.name = init.name;
     this.imageUrl = init.imageUrl;
     this.twitterUrl = init.twitterUrl
@@ -22,7 +22,7 @@ export class Applicant implements IApplicant {
 
   toInterface(): IApplicant {
     return {
-      id: this.id,
+      id: this.id?.value,
       name: this.name,
       imageUrl: this.imageUrl,
       twitterUrl: this.twitterUrl,

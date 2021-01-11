@@ -1,10 +1,10 @@
-import { Applicant, ApplicantId } from '@libs/domain/model';
+import { Applicant } from '@libs/domain/model';
 import { ApplicantDTO } from '../dto/ApplicantDTO';
 
 export class ApplicantAssembler {
   static decode(dto: ApplicantDTO): Applicant {
     return new Applicant({
-      id: new ApplicantId(dto.id!),
+      id: dto.id,
       name: dto.name,
       imageUrl: dto.imageUrl,
       twitterUrl: dto.twitterUrl,

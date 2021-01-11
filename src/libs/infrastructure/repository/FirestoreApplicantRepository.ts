@@ -8,11 +8,8 @@ import { ApplicantDTO } from './dto/ApplicantDTO';
 
 @injectable()
 export class FirestoreApplicantRepository extends ApplicantRepository {
-
-  private _firestore = firebase.firestore();
-
   async retrieve(recruiterId: RecruiterId): Promise<Applicant[]> {
-    const snap = await this._firestore
+    const snap = await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
@@ -29,7 +26,7 @@ export class FirestoreApplicantRepository extends ApplicantRepository {
   async isApplying(recruiterId: RecruiterId): Promise<boolean> {
     const credential = firebase.auth().currentUser;
     if (!credential) return false;
-    const doc = await this._firestore
+    const doc = await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
@@ -44,14 +41,14 @@ export class FirestoreApplicantRepository extends ApplicantRepository {
     const credential = firebase.auth().currentUser;
     if (!credential) return;
     const myId = credential.uid;
-    const myDoc = await this._firestore
+    const myDoc = await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
       .doc(myId)
       .get();
     const myApplicantDTO = ApplicantDTO.fromDoc(myDoc);
-    await this._firestore
+    await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
@@ -64,7 +61,7 @@ export class FirestoreApplicantRepository extends ApplicantRepository {
   async cancel(recruiterId: RecruiterId): Promise<void> {
     const credential = firebase.auth().currentUser;
     if (!credential) return;
-    await this._firestore
+    await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)

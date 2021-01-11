@@ -2,22 +2,22 @@ import { Id } from './Id';
 import { TwitterUser } from './TwitterUser';
 
 export interface IRecruiter {
-  id?: RecruiterId;
+  id?: string;
   name: string;
   description: string;
   imageUrl: string;
   twitterId: string;
 }
 
-export class Recruiter implements IRecruiter {
-  public readonly id?: RecruiterId;
+export class Recruiter {
+  public readonly id: RecruiterId;
   public readonly name: string;
   public readonly description: string;
   public readonly imageUrl: string;
   public readonly twitterId: string;
 
   constructor(init: IRecruiter) {
-    this.id = init.id;
+    this.id = new RecruiterId(init.id);
     this.name = init.name;
     this.description = init.description;
     this.imageUrl = init.imageUrl;
@@ -26,7 +26,7 @@ export class Recruiter implements IRecruiter {
 
   toInterface(): IRecruiter {
     return {
-      id: this.id,
+      id: this.id?.value,
       name: this.name,
       description: this.description,
       imageUrl: this.imageUrl,

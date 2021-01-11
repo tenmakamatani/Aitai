@@ -17,6 +17,7 @@ const container = new Container();
 
 export class DIContainer {
   static setup(): void {
+    container.unbindAll();
     container
       .bind<ApplicantRepository>(TYPES.ApplicantRepository)
       .to(FirestoreApplicantRepository)

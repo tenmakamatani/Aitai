@@ -8,14 +8,11 @@ import { RecruiterDTO } from './dto/RecruiterDTO';
 
 @injectable()
 export class FirestoreRecruiterRepository extends RecruiterRepository {
-
-  private _firestore = firebase.firestore();
-
   async createMyRecruiter(recruiter: Recruiter): Promise<void> {
     const credential = firebase.auth().currentUser;
     if (!credential) return;
     const dto = RecruiterAssembler.encode(recruiter);
-    await this._firestore
+    await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
@@ -24,7 +21,7 @@ export class FirestoreRecruiterRepository extends RecruiterRepository {
   }
 
   async retrieve(recruiterId: RecruiterId): Promise<Recruiter> {
-    const doc = await this._firestore
+    const doc = await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
@@ -34,15 +31,17 @@ export class FirestoreRecruiterRepository extends RecruiterRepository {
     return RecruiterAssembler.decode(dto);
   }
 
-  async retrieveFromTwitterId(twitterId: string): Promise<Recruiter | null> {
-    const snap = await this._firestore
+  async retrieveFromTwitterId(twitterId: string): Promise<Recruiter> {
+    const snap = await firebase.firestore()
       .collection(FirestoreCollectionIds.v)
       .doc(firestoreVersion)
       .collection(FirestoreCollectionIds.recruiters)
       .where('twitterId', '==', twitterId)
       .limit(1)
       .get();
-    if (snap.docs.length === 0) return null;
+    if (snap.docs.length === 0) {
+      throw new Error('There is no recruiter.');
+    };
     const dto = RecruiterDTO.fromDoc(snap.docs[0]);
     return RecruiterAssembler.decode(dto);
   }

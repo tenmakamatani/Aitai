@@ -1,10 +1,10 @@
-import { Recruiter, RecruiterId } from "@libs/domain/model";
+import { Recruiter } from "@libs/domain/model";
 import { RecruiterDTO } from "../dto/RecruiterDTO";
 
 export class RecruiterAssembler {
   static decode(dto: RecruiterDTO): Recruiter {
     return new Recruiter({
-      id: new RecruiterId(dto.id!),
+      id: dto.id,
       name: dto.name,
       description: dto.description,
       imageUrl: dto.imageUrl,

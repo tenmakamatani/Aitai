@@ -1,7 +1,7 @@
 export abstract class Id {
-  readonly value: string;
+  readonly value?: string;
 
-  constructor(_value: string) {
+  constructor(_value?: string) {
     this.value = _value;
   }
 
