@@ -1,7 +1,6 @@
-import React from 'react';
 import Link from 'next/link';
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
   return (
     <footer>
       <div className="footer">
