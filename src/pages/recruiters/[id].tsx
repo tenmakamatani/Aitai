@@ -1,26 +1,39 @@
+import { useState, useEffect } from 'react';
 import { InferGetServerSidePropsType, GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
 import { IRecruiter, Recruiter } from '@libs/domain/model';
 import { DIContainer } from '@libs/application/DI';
+import { useRecruiter } from '@modules/hooks/recruiter';
+import { useAuth } from '@modules/hooks/auth';
 
 interface IProps {
-  recruiter: IRecruiter;
+  id: string;
 }
 
 export const getServerSideProps: GetServerSideProps<Partial<IProps>> = async ({ query, res }: GetServerSidePropsContext) => {
   const id = typeof query.id === 'string' ? query.id : query.id[0];
-  const recruiter = await DIContainer.recruiterRepo.retrieveFromTwitterId(id);
   return {
     props: {
-      recruiter: recruiter.toInterface(),
+      id: id
     }
-  };
+  }
 }
 
 export default (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const recruiter = new Recruiter(props.recruiter!);
-  return (
-    <div>
-      <p>{recruiter!.name}</p>
-    </div>
-  )
+  const {
+    loading, error, recruiter
+  } = useRecruiter(props.id!);
+  const auth = useAuth();
+
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
+  if (error) {
+    return <h1>Error!!!</h1>
+  }
+  if (auth.user?.uid === recruiter?.id.value) {
+    console.log("It's me!!!");
+  }
+
+  return <h1>{recruiter!.name}</h1>
 }
